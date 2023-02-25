@@ -14,6 +14,11 @@ def add_song(request):
     return JsonResponse(song)
 
 
+def edit_song(request):
+    song_svc.edit_song()
+    return
+
+
 def list_songs(request):
     songs = song_svc.list_songs()
     return JsonResponse({"songs": songs})

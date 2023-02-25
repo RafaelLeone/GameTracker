@@ -6,7 +6,7 @@
       <span class="caption grey--text mr-2">SEE ALL</span>
     </v-row>
     <v-row class="mt-10">
-      <v-card v-for="music in apiMusics.songs" :key="music.title" rounded class="shadow-on-hover ma-2" @click="musicChoosed(music)">
+      <v-card v-for="music in apiMusics.songs" :key="music.title" rounded class="shadow-on-hover ma-2" :class="getClass(music)" @click="musicChoosed(music)">
         <v-img :src="music.cover" height="145" width="145" class="mx-4 mt-4"></v-img>
         <v-card-title>{{ reduceTitle(music.title) }}</v-card-title>
         <v-card-subtitle class="mb-6">{{ music.artist }}</v-card-subtitle>
@@ -89,8 +89,24 @@ export default {
     return { musicStore, apiMusics, rating }
   },
   methods: {
+    getClass(newMusic) {
+      if (newMusic.status == 1) {
+        return 'red'
+      }
+      if (newMusic.status == 2) {
+        return 'yellow'
+      }
+      if (newMusic.status == 3) {
+        return 'green'
+      }
+    },
     musicChoosed(newMusic) {
-      this.musicStore.setMusicInRow(newMusic)
+      if (newMusic.status == 3) {
+        newMusic.status = 1
+      } else {
+        newMusic.status += 1
+      }
+      newMusic.status.save()
     },
     reduceTitle (title) {
       if (title.length <= 15) {
@@ -104,6 +120,21 @@ export default {
 
 <style>
 .shadow-on-hover:hover {
+  background-color: purple;
+  box-shadow: 0 10px 15px -3px purple,
+    0 4px 6px -2px darkpurple;
+}
+.red {
+  background-color: red;
+  box-shadow: 0 10px 15px -3px red,
+    0 4px 6px -2px darkred;
+}
+.yellow {
+  background-color: yellow;
+  box-shadow: 0 10px 15px -3px yellow,
+    0 4px 6px -2px yellow;
+}
+.green {
   background-color: green;
   box-shadow: 0 10px 15px -3px green,
     0 4px 6px -2px darkgreen;

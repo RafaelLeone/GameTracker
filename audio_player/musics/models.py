@@ -5,7 +5,11 @@ class Song(models.Model):
     title = models.CharField(max_length=100)
     artist = models.CharField(max_length=100)
     cover = models.URLField(max_length=200)
-    file = models.FileField(null=True, blank=True)
+    class Status(models.IntegerChoices):
+        Backlog = 1
+        Playing = 2
+        Done = 3
+    status = models.IntegerField(choices=Status.choices)
 
     def to_dict_json(self):
         return {
@@ -13,7 +17,7 @@ class Song(models.Model):
             "title": self.title,
             "artist": self.artist,
             "cover": self.cover,
-            "file": self.file.name,
+            "status": 1
         }
 
 

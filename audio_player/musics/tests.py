@@ -32,7 +32,6 @@ def test_add_song_create_a_song(client, db, file):
             "title": "We are the djavue",
             "artist": "Tonylampkins",
             "cover": "https://www.lumitecfoto.com.br/media/catalog/product/cache/1/image/578x/9df78eab33525d08d6e5fb8d27136e95/l/a/lampada-incandescente-100w-1_1.jpg",
-            "file": file,
         },
     )
     assert resp.json() == Song.objects.get(title="We are the djavue").to_dict_json()

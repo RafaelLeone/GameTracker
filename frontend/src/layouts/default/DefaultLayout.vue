@@ -28,7 +28,6 @@ import { useAccountsStore } from "@/stores/accountsStore"
 import AppSnackbar from "@/components/AppSnackbar.vue"
 import AppErrorDialog from "@/components/AppErrorDialog.vue"
 import AppNavBar from "@/components/AppNavBar.vue"
-import MusicPlayer from "@/components/MusicPlayer.vue"
 
 export default {
   name: "DefaultLayout",
@@ -36,7 +35,6 @@ export default {
     AppSnackbar,
     AppErrorDialog,
     AppNavBar,
-    MusicPlayer,
   },
   setup() {
     const appStore = useAppStore()
