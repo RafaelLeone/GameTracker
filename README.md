@@ -5,7 +5,7 @@ Um app que permite que você registre seus jogos da maneira que quiser e mantém
 ## **Vídeo de apresentação**
 [*Link para o drive*]()  
 
-![Live demo](./readme_assets/demo.webm)  
+![Live demo](./readme_assets/demo.gif)  
 
 <br>
 
