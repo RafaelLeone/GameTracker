@@ -1,7 +1,7 @@
 <template>
    <div >
     <v-row>
-      <h5 class="text-h5 font-weight-bold ml-5">Your songs</h5>
+      <h5 class="text-h5 font-weight-bold ml-5">Your games</h5>
       <v-spacer></v-spacer>
 
     </v-row>
