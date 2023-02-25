@@ -3,7 +3,7 @@ from http import HTTPStatus
 import pytest
 from django.core.files.uploadedfile import SimpleUploadedFile
 
-from audio_player.musics.models import Song
+from gametracker.musics.models import Song
 
 
 @pytest.fixture

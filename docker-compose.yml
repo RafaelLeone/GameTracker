@@ -1,9 +1,9 @@
 services:
 
   backend:
-    image: back-audio_player
-    hostname: back-audio_player
-    container_name: back-audio_player
+    image: back-gametracker
+    hostname: back-gametracker
+    container_name: back-gametracker
     build:
       context: ./
       dockerfile: Dockerfile
@@ -43,9 +43,9 @@ services:
       context: ./frontend
       args:
         NUXT_PUBLIC_PATH: http://localhost/static/
-    image: front-audio_player
-    hostname: front-audio_player
-    container_name: front-audio_player
+    image: front-gametracker
+    hostname: front-gametracker
+    container_name: front-gametracker
     command: npm run dev
     network_mode: "host"
     expose:
@@ -60,7 +60,7 @@ services:
 
   nginx:
     image: nginx
-    container_name: nginx-audio_player
+    container_name: nginx-gametracker
     network_mode: "host"
     volumes:
       - ./docker/nginx/default_local:/etc/nginx/conf.d/default.conf

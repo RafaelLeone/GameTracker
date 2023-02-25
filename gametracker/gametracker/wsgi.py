@@ -1,5 +1,5 @@
 """
-WSGI config for audio_player project.
+WSGI config for gametracker project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "audio_player.audio_player.settings")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "gametracker.gametracker.settings")
 
 application = get_wsgi_application()

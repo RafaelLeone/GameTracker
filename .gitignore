@@ -5,7 +5,7 @@ dkdata
 coverage.xml
 htmlcov/
 .idea
-/audio_player.log
+/gametracker.log
 /static
 uploads/
 

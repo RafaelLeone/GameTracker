@@ -1,6 +1,6 @@
-# from audio_player.accounts.models import User
-# from audio_player.accounts.tests import fixtures
-# from audio_player.tasks.models import Todo
+# from gametracker.accounts.models import User
+# from gametracker.accounts.tests import fixtures
+# from gametracker.tasks.models import Todo
 
 
 # def test_criar_tarefa_sem_login(client):

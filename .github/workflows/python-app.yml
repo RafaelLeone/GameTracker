@@ -1,4 +1,4 @@
-name: audio_player CI
+name: gametracker CI
 
 on:
   push:

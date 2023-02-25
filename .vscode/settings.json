@@ -3,7 +3,7 @@
   "python.formatting.provider": "black",
   "python.pythonPath": "/usr/local/bin/python",
   "python.testing.pytestArgs": [
-    "audio_player"
+    "gametracker"
   ],
   "python.testing.unittestEnabled": false,
   "python.testing.pytestEnabled": true,

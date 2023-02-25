@@ -1,4 +1,4 @@
-from audio_player.tasks.models import User
+from gametracker.tasks.models import User
 
 
 def user_jon():

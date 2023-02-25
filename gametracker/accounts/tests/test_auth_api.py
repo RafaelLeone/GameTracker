@@ -1,4 +1,4 @@
-# from audio_player.accounts.models import User
+# from gametracker.accounts.models import User
 # from . import fixtures
 
 
