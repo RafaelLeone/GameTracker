@@ -3,7 +3,7 @@
     <v-row>
       <h5 class="text-h5 font-weight-bold ml-5">Your songs</h5>
       <v-spacer></v-spacer>
-      <span class="caption grey--text mr-2">SEE ALL</span>
+
     </v-row>
     <v-row class="mt-10">
       <v-card v-for="music in apiMusics.songs" :key="music.title" rounded class="shadow-on-hover ma-2" :class="getClass(music)" @click="musicChoosed(music)">
