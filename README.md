@@ -1,66 +1,50 @@
-# Spotbye Audio Player
+# GameTracker
 
-#### Feito com uma derivação do template 
-
-[d-jávue](https://github.com/huogerac/djavue)
-
-* [Motivação](#motivação)
-* [Gif demo](#gif-demo)
-* [Tecnologias utilizadas](#tecnologias-utilizadas)
-* [Setup do projeto](#setup-do-projeto)
-
-<br />
+Um app que permite que você registre seus jogos da maneira que quiser e mantém uma biblioteca para que você não perca o foco daquilo que realmente quer jogar.  
 
 ## **Vídeo de apresentação**
-[*Link para o drive*](https://drive.google.com/file/d/1byikT5JzlZO2e8R4kS55_3fAnnEdFGqo/view?usp=sharing)
+[*Link para o drive*]()  
 
-<br />
+![Live demo](./readme_assets/demo.webm)  
 
-## Motivação
+<br>
 
-Ser uma aplicação web que permita que o usuário final faça o upload de arquivos mp3, à moda dos players de músicas do passado, e curta as músicas que mais gosta, como bem desejar.
-
-Embora existam alternativas menos pedantes nos streamings de músicas, que não requerem o upload de arquivos, a aplicação ainda tem existência justificável para quem não é assinante de nenhum desses serviços e quer fugir dos anúncios.
-
-<br />
-
-## Gif demo
-
-***ALERTA: o slider do player em alguns momentos apresenta mal funcionamento, mas é completamente randômico. Preciso entender melhor se é culpa do slider do vuetify ou da API de áudio do HTML5***
-
-![Live demo](./readme_assets/spotbye.gif)
-
-<br />
-
-## Tecnologias utilizadas
-
-* [VueJs 3](https://vuejs.org/)
-* [Vite](https://vitejs.dev/)
-* [Vuetify 3](https://next.vuetifyjs.com/en/getting-started/installation/)
-* [MirageJs](https://miragejs.com/)
-* [Docker](https://www.docker.com/)
-* [Nginx](https://www.nginx.com/)
-* [Django](https://www.djangoproject.com/)
-
-<br />
-
-## Setup do projeto
-
-
-### Botando o projeto no ar
+## **Como rodar o projeto**
 
 ```bash
-docker compose build 
-
-docker compose up -d
+docker-compose up --build
 ```
 
-Feito isso, no seu navegador acesse o [loopback da sua máquina](http://localhost/)
+Se deu tudo certo, acesse localhost em seu navegador. Se não:  
 
-<br />
+## O que pode dar errado?
 
-### Ambiente de desenvolvimento mockado
+1 - Pode haver outro docker rodando. Rode:  
+docker-compose down  
+Para tirar os containers que subimos agora. Rode:  
+docker ps  
+Se ainda houver containers pode ser necessário pará-los com:  
+docker kill "número-do-container"  
+Esse número geralmente está na primeria coluna do resultado do docker ps  
 
-Verifique se a variável de ambiente **VITE_API_MOCK** setada como *true* em *frontend/.env*.
+2 - Pode haver portas já sendo utilizadas. Rode:  
+netstat -anp|grep "numero-da-porta"  
+Esse projeto pode usar as portas 3000, 3001, 80, 8080 e 8000  
+Caso haja algum serviço em alguma dessas portas rode:  
+kill -9 "numero-do-PID"  
+O PID vai ser o número antes da barra na útlima coluna.  
+É bom fazer o passo 1 antes de tentar o docker-compose up novamente!  
+
+<br>
+
+## Focando apenas no front
+
+Verifique se a variável de ambiente **VITE_API_MOCK** é *true* em *frontend/.env*.  
+Isso não irá subir o banco nem o back, e você pode focar em desenvolver o front primeiro. Use a apimock para ver como os dados se encaixariam sem ter que ficar populando banco desnecessariamente :)  
 
 Para rodar a aplicação conectada ao backend, basta setar o valor dessa variável para *false*.
+
+## Créditos
+
+[d-jávue](https://github.com/huogerac/djavue)  
+[spotbye](https://github.com/vitoiuo/spotbye-audio-player/blob/main/frontend/src/components/MusicList.vue)
