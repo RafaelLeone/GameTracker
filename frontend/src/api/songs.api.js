@@ -2,7 +2,7 @@ import api from "./config.js"
 import apiHelpers from "./helpers.js"
 
 export default {
-    getSongs: () => {
+    getGames: () => {
       return new Promise((resolve, reject) => {
         api
           .get("/api/musics/list_songs")
@@ -26,7 +26,7 @@ export default {
           })
       })
     },
-    deleteSong: (data) => {
+    deleteGame: (data) => {
       return new Promise((resolve, reject) => {
         api
           .post("/api/musics/delete_song", apiHelpers.dataToForm(data))

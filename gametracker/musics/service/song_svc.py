@@ -1,10 +1,10 @@
-from ..models import Song
+from ..models import Game
 
 
 def add_song(new_song):
-    song = Song(
+    song = Game(
         title=new_song["title"],
-        artist=new_song["artist"],
+        platform=new_song["platform"],
         cover=new_song["cover"],
         status=1
     )
@@ -13,11 +13,11 @@ def add_song(new_song):
 
 
 def list_songs():
-    songs = Song.objects.all()
+    songs = Game.objects.all()
 
     return [song.to_dict_json() for song in songs]
 
 
 def delete_song(id: int):
-    Song.objects.get(id=id).delete()
+    Game.objects.get(id=id).delete()
 

@@ -14,7 +14,7 @@ export function makeServer({ environment = "development" } = {}) {
         title() {
           return faker.music.songName()
         },
-        artist () {
+        platform () {
           return faker.name.fullName()
         },
         cover () {

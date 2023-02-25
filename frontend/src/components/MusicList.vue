@@ -9,8 +9,8 @@
       <v-card v-for="music in apiMusics.songs" :key="music.title" rounded class="shadow-on-hover ma-2" :class="getClass(music)" @click="musicChoosed(music)">
         <v-img :src="music.cover" height="145" width="145" class="mx-4 mt-4"></v-img>
         <v-card-title>{{ reduceTitle(music.title) }}</v-card-title>
-        <v-card-subtitle class="mb-6">{{ music.artist }}</v-card-subtitle>
-        <v-btn @click="deleteSong(music)">DELETE</v-btn>
+        <v-card-subtitle class="mb-6">{{ music.platform }}</v-card-subtitle>
+        <v-btn @click="deleteGame(music)">DELETE</v-btn>
       </v-card>
     </v-row>
 
@@ -33,7 +33,7 @@
             <div class="text-h5">
               {{ music.title }}
             </div>
-            <div class="text-h6 font-weight-thin">{{ music.artist }}</div>
+            <div class="text-h6 font-weight-thin">{{ music.platform }}</div>
           </v-card-title>
           <v-img
             contain
@@ -81,7 +81,7 @@ export default {
     const rating = ref(0)
 
     async function getAPIMusics () {
-      apiMusics.value = await songsApi.getSongs()
+      apiMusics.value = await songsApi.getGames()
     }
 
     onMounted(async () => {
@@ -91,9 +91,9 @@ export default {
     return { musicStore, apiMusics, rating }
   },
   methods: {
-    async deleteSong(newMusic) {
-      await songsApi.deleteSong({id: newMusic.id})
-      apiMusics.value = await songsApi.getSongs()
+    async deleteGame(newMusic) {
+      await songsApi.deleteGame({id: newMusic.id})
+      apiMusics.value = await songsApi.getGames()
     },
     getClass(newMusic) {
       if (newMusic.status == 1) {

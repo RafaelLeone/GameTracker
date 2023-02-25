@@ -7,7 +7,7 @@
         <v-card-text>
           <v-form ref="form" v-model="valid">
             <v-text-field v-model="title" prepend-icon="mdi-format-title" label="Title" :rules="titleRules" />
-            <v-text-field v-model="artist" prepend-icon="mdi-account-music" label="Platform" :rules="artistRules" />
+            <v-text-field v-model="platform" prepend-icon="mdi-account-music" label="Platform" :rules="platformRules" />
             <v-text-field v-model="musicCover" prepend-icon="mdi-image-area" label="Cover (copy img adress w/ right mouse click)" type="url" :rules="imageRules"/>
           </v-form>
         </v-card-text>
@@ -30,7 +30,7 @@ export default {
     const showForm = ref(false)
     const valid = ref(false)
     const title = ref('')
-    const artist = ref('')
+    const platform = ref('')
     const musicCover = ref('')
     const appStore = useAppStore()
 
@@ -38,7 +38,7 @@ export default {
       v => !!v || 'Title is required',
       v => (v && v.length <= 25) || 'Title must be less than 25 characters'
     ]
-    const artistRules = [
+    const platformRules = [
       v => !!v || 'Artist is required',
       v => (v && v.length <= 25) || 'Artist must be less than 25 characters'
     ]
@@ -51,13 +51,13 @@ export default {
     }
     async function submit () {
       if (valid.value) {
-        const newSong = {
+        const newGame = {
           title: title.value,
-          artist: artist.value,
+          platform: platform.value,
           cover: musicCover.value,
         }
 
-        await songsApi.addNewsong(newSong)
+        await songsApi.addNewsong(newGame)
         showForm.value = false
         cleanForm()
       }
@@ -75,10 +75,10 @@ export default {
       form,
       valid,
       title,
-      artist,
+      platform,
       musicCover,
       titleRules,
-      artistRules,
+      platformRules,
       imageRules,
       showPopup,
       submit,

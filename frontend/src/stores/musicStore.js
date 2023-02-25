@@ -4,14 +4,14 @@ export const useMusicStore = defineStore("musicStore", {
   state: () => ({
     musicRow: [],
     musicRowBackup: [],
-    currentSong: null,
+    currentGame: null,
     queuePosition: 0,
   }),
   getters: {
-    hasNextSong (state) {
+    hasNextGame (state) {
       return state.queuePosition + 1 < state.musicRow.length
     },
-    hasPreviousSong (state) {
+    hasPreviousGame (state) {
       return state.queuePosition !== 0
     }
   },
@@ -30,32 +30,32 @@ export const useMusicStore = defineStore("musicStore", {
           this.musicRow[randomIndex] = array[index];
           this.musicRow[index] = randomIndexVal;
       })
-      this.currentSong = this.musicRow.find(e => e.id === this.currentSong.id)
+      this.currentGame = this.musicRow.find(e => e.id === this.currentGame.id)
     },
     unShuffleRow () {
       this.musicRow = this.musicRowBackup
-      this.currentSong = this.musicRow.find(e => e.id === this.currentSong.id)
+      this.currentGame = this.musicRow.find(e => e.id === this.currentGame.id)
     },
-    setCurrentSong (directionValue) {
-      this.currentSong  = this.musicRow[this.queuePosition]
-      if ((this.queuePosition === 1 && !this.hasNextSong.this.queuePosition) 
-      || (this.queuePosition === -1 && !this.hasPreviousSong.this.queuePosition)) {
+    setCurrentGame (directionValue) {
+      this.currentGame  = this.musicRow[this.queuePosition]
+      if ((this.queuePosition === 1 && !this.hasNextGame.this.queuePosition) 
+      || (this.queuePosition === -1 && !this.hasPreviousGame.this.queuePosition)) {
         return
      }
      this.queuePosition+=directionValue
     },
     clearMusicRow () {
       this.musicRow = []
-      this.currentSong = null
+      this.currentGame = null
     }
   },
 })
 
 
 
-// const hasNextSong = computed(() => {
+// const hasNextGame = computed(() => {
 //   return queuePosition.value + 1 < songs.value.length
 // })
-// const hasPreviousSong = computed(() => {
+// const hasPreviousGame = computed(() => {
 //   return queuePosition.value !== 0
 // })

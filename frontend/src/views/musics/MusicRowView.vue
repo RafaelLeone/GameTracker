@@ -41,7 +41,7 @@
                   {{ music.title }}
                 </v-card-title>
 
-                <v-card-subtitle>{{  music.artist }}</v-card-subtitle>
+                <v-card-subtitle>{{  music.platform }}</v-card-subtitle>
               </div>
             </div>
           </v-card>
