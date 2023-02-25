@@ -1,6 +1,8 @@
 # GameTracker
 
 Um app que permite que você registre seus jogos da maneira que quiser e mantém uma biblioteca para que você não perca o foco daquilo que realmente quer jogar.  
+Adicione jogos, e mude se está em backlog, jogando ou completo.
+Ao poder adicionar como quiser, você pode até ter o mesmo jogo 2 vezes, mas com dificuldades diferentes, por exemplo.
 
 ## **Vídeo de apresentação**
 [*Link para o drive*]()  
