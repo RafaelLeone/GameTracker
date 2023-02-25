@@ -10,6 +10,7 @@
         <v-img :src="music.cover" height="145" width="145" class="mx-4 mt-4"></v-img>
         <v-card-title>{{ reduceTitle(music.title) }}</v-card-title>
         <v-card-subtitle class="mb-6">{{ music.artist }}</v-card-subtitle>
+        <v-btn @click="deleteSong(music)">DELETE</v-btn>
       </v-card>
     </v-row>
 
@@ -72,10 +73,11 @@ import { ref, onMounted } from 'vue'
 import songsApi from "@/api/songs.api.js"
 
 
+const apiMusics = ref([]) 
+
 export default {
   setup () {
     const musicStore = useMusicStore()
-    const apiMusics = ref([])
     const rating = ref(0)
 
     async function getAPIMusics () {
@@ -89,6 +91,10 @@ export default {
     return { musicStore, apiMusics, rating }
   },
   methods: {
+    async deleteSong(newMusic) {
+      await songsApi.deleteSong({id: newMusic.id})
+      apiMusics.value = await songsApi.getSongs()
+    },
     getClass(newMusic) {
       if (newMusic.status == 1) {
         return 'red'
@@ -106,7 +112,6 @@ export default {
       } else {
         newMusic.status += 1
       }
-      newMusic.status.save()
     },
     reduceTitle (title) {
       if (title.length <= 15) {

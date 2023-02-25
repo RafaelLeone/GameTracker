@@ -16,3 +16,8 @@ def list_songs():
     songs = Song.objects.all()
 
     return [song.to_dict_json() for song in songs]
+
+
+def delete_song(id: int):
+    Song.objects.get(id=id).delete()
+

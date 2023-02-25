@@ -1,3 +1,5 @@
+from http import HTTPStatus
+
 import pytest
 from django.core.files.uploadedfile import SimpleUploadedFile
 
@@ -5,27 +7,29 @@ from audio_player.musics.models import Song
 
 
 @pytest.fixture
-def file(db):
-    music_file = SimpleUploadedFile(
-        "tonylampkins.mp3", b"Tonylampkins music for a new album"
+def song(db):
+    return Song.objects.create(
+        title="Tonylamkins e seus teclados",
+        artist="Tonylamkins",
+        cover="url",
+        status=1
     )
 
-    return music_file
 
-
-def test_list_songs_retur_songs_listl(client, db, file):
+def test_list_songs_retur_songs_listl(client, db):
     song = Song.objects.create(
         title="Tonylamkins e seus teclados",
         artist="Tonylamkins",
         cover="url",
-        file=file,
+        status=1
     )
 
     resp = client.post("/api/musics/list_songs")
     assert resp.json() == {"songs": [song.to_dict_json()]}
+    assert resp.status_code == HTTPStatus.OK
 
 
-def test_add_song_create_a_song(client, db, file):
+def test_add_song_create_a_song(client, db):
     resp = client.post(
         "/api/musics/add_song",
         {
@@ -35,3 +39,15 @@ def test_add_song_create_a_song(client, db, file):
         },
     )
     assert resp.json() == Song.objects.get(title="We are the djavue").to_dict_json()
+    assert resp.status_code == HTTPStatus.OK
+
+
+def test_delete_song(client, db, song):
+    resp = client.post(
+        "/api/musics/delete_song",
+        {
+            "id": song.id
+        },
+    )
+    assert Song.objects.all().count() == 0
+    assert resp.status_code == HTTPStatus.OK

@@ -26,5 +26,17 @@ export default {
           })
       })
     },
+    deleteSong: (data) => {
+      return new Promise((resolve, reject) => {
+        api
+          .post("/api/musics/delete_song", apiHelpers.dataToForm(data))
+          .then((response) => {
+            return resolve(response.data)
+          })
+          .catch((error) => {
+            return reject(error)
+          })
+      })
+    },
   }
   

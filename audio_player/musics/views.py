@@ -17,3 +17,10 @@ def add_song(request):
 def list_songs(request):
     songs = song_svc.list_songs()
     return JsonResponse({"songs": songs})
+
+
+@csrf_exempt
+def delete_song(request):
+    id = request.POST["id"]
+    song_svc.delete_song(id)
+    return JsonResponse({})
