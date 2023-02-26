@@ -16,7 +16,7 @@
     <v-row class="mt-10 mgn">
       <v-card v-for="game in apiGames.games" :key="game.title" rounded class="shadow-on-hover ma-2" :class="getClass(game)" @click="selectedGame(game)">
         <v-img :src="game.cover" height="145" width="145" class="mx-4 mt-4"></v-img>
-        <v-card-title>{{ reduceTitle(game.title) }}</v-card-title>
+        <v-card-title>{{ game.title }}</v-card-title>
         <v-card-subtitle class="mb-6 fs">{{ game.platform }}</v-card-subtitle>
         <v-btn @click="deleteGame(game)">DELETE</v-btn>
       </v-card>
@@ -73,14 +73,8 @@ export default {
         newGame.status += 1
       }
       await gamesApi.changeStatus({id: newGame.id, new_status: newGame.status})
-    },
-    reduceTitle (title) {
-      if (title.length <= 15) {
-        return title
-      }
-      return title.slice(0,13)+'...'
     }
-  },
+  }
 }
 </script>
 
