@@ -13,7 +13,7 @@ def add_game(new_game):
 
 
 def list_games():
-    games = Game.objects.all()
+    games = Game.objects.all().order_by("id")
 
     return [game.to_dict_json() for game in games]
 

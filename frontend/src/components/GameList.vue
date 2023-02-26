@@ -17,7 +17,7 @@
       <v-card v-for="game in apiGames.games" :key="game.title" rounded class="shadow-on-hover ma-2" :class="getClass(game)" @click="selectedGame(game)">
         <v-img :src="game.cover" height="145" width="145" class="mx-4 mt-4"></v-img>
         <v-card-title>{{ reduceTitle(game.title) }}</v-card-title>
-        <v-card-subtitle class="mb-6">{{ game.platform }}</v-card-subtitle>
+        <v-card-subtitle class="mb-6 fs">{{ game.platform }}</v-card-subtitle>
         <v-btn @click="deleteGame(game)">DELETE</v-btn>
       </v-card>
     </v-row>
@@ -60,7 +60,7 @@ export default {
         return 'red'
       }
       if (newGame.status == 2) {
-        return 'yellow'
+        return 'bg-yellow yellow'
       }
       if (newGame.status == 3) {
         return 'green'
@@ -96,7 +96,6 @@ export default {
     0 4px 6px -2px darkred;
 }
 .yellow {
-  background-color: yellow;
   box-shadow: 0 10px 15px -3px yellow,
     0 4px 6px -2px yellow;
 }
@@ -112,5 +111,8 @@ export default {
   margin-left: 2%;
   margin-top: 2%;
   padding: 1%;
+}
+.fs {
+  font-size: 110%;
 }
 </style>
