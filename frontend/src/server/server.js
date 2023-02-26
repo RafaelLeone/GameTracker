@@ -12,7 +12,7 @@ export function makeServer({ environment = "development" } = {}) {
     factories: {
       song: Factory.extend({
         title() {
-          return faker.music.songName()
+          return faker.game.songName()
         },
         platform () {
           return faker.name.fullName()
@@ -33,7 +33,7 @@ export function makeServer({ environment = "development" } = {}) {
     routes() {
       this.urlPrefix = 'http://localhost';
       this.namespace = "api"
-      this.get("musics/list_songs", schema => {
+      this.get("games/list_songs", schema => {
         return schema.songs.all()
       })
 

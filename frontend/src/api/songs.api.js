@@ -5,7 +5,7 @@ export default {
     getGames: () => {
       return new Promise((resolve, reject) => {
         api
-          .get("/api/musics/list_songs")
+          .get("/api/games/list_songs")
           .then((response) => {
             return resolve(response.data)
           })
@@ -17,7 +17,7 @@ export default {
     addNewsong: (data) => {
       return new Promise((resolve, reject) => {
         api
-          .post("/api/musics/add_song", apiHelpers.dataToForm(data))
+          .post("/api/games/add_song", apiHelpers.dataToForm(data))
           .then((response) => {
             return resolve(response.data)
           })
@@ -29,7 +29,7 @@ export default {
     deleteGame: (data) => {
       return new Promise((resolve, reject) => {
         api
-          .post("/api/musics/delete_song", apiHelpers.dataToForm(data))
+          .post("/api/games/delete_song", apiHelpers.dataToForm(data))
           .then((response) => {
             return resolve(response.data)
           })

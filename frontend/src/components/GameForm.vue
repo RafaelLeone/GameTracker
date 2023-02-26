@@ -8,7 +8,7 @@
           <v-form ref="form" v-model="valid">
             <v-text-field v-model="title" prepend-icon="mdi-format-title" label="Title" :rules="titleRules" />
             <v-text-field v-model="platform" prepend-icon="mdi-account-music" label="Platform" :rules="platformRules" />
-            <v-text-field v-model="musicCover" prepend-icon="mdi-image-area" label="Cover (copy img adress w/ right mouse click)" type="url" :rules="imageRules"/>
+            <v-text-field v-model="gameCover" prepend-icon="mdi-image-area" label="Cover (copy img adress w/ right mouse click)" type="url" :rules="imageRules"/>
           </v-form>
         </v-card-text>
         <v-card-actions>
@@ -31,7 +31,7 @@ export default {
     const valid = ref(false)
     const title = ref('')
     const platform = ref('')
-    const musicCover = ref('')
+    const gameCover = ref('')
     const appStore = useAppStore()
 
     const titleRules = [
@@ -43,7 +43,7 @@ export default {
       v => (v && v.length <= 25) || 'Artist must be less than 25 characters'
     ]
     const imageRules = [
-      v => !!v || 'Music cover is required',
+      v => !!v || 'Game cover is required',
     ]
 
     function showPopup () {
@@ -54,7 +54,7 @@ export default {
         const newGame = {
           title: title.value,
           platform: platform.value,
-          cover: musicCover.value,
+          cover: gameCover.value,
         }
 
         await songsApi.addNewsong(newGame)
@@ -76,7 +76,7 @@ export default {
       valid,
       title,
       platform,
-      musicCover,
+      gameCover,
       titleRules,
       platformRules,
       imageRules,

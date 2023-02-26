@@ -9,7 +9,7 @@ urlpatterns = [
     path("api/", include("gametracker.base.urls")),
     path("api/accounts/", include("gametracker.accounts.urls")),
     path("api/tasks/", include("gametracker.tasks.urls")),
-    path("api/musics/", include("gametracker.musics.urls")),
+    path("api/games/", include("gametracker.games.urls")),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -3,7 +3,7 @@
     <v-container class="mt-5"> 
         <h1 class="text-h5 font-weight-bold mb-3">Fila</h1>
         <v-col
-           v-for="(music, index) in musicRow"
+           v-for="(game, index) in gameRow"
           :key="index"
           cols="12"
         >
@@ -32,16 +32,16 @@
                 size="70"
                 rounded="0"
               >
-                <v-img :src="music.cover"></v-img>
+                <v-img :src="game.cover"></v-img>
               </v-avatar>
               <div>
                 <v-card-title
                   class="text-h5"
                 >
-                  {{ music.title }}
+                  {{ game.title }}
                 </v-card-title>
 
-                <v-card-subtitle>{{  music.platform }}</v-card-subtitle>
+                <v-card-subtitle>{{  game.platform }}</v-card-subtitle>
               </div>
             </div>
           </v-card>
@@ -54,14 +54,14 @@
 </template>
 
 <script setup>
-import { useMusicStore } from "@/stores/musicStore"
+import { useGameStore } from "@/stores/gameStore"
 import { mapState } from "pinia"
 </script>
 
 <script>
 export default {
     computed: {
-    ...mapState(useMusicStore, ["musicRow"]),
+    ...mapState(useGameStore, ["gameRow"]),
   },
 }
 </script>

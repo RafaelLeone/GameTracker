@@ -20,7 +20,7 @@
           :to="{ name:'base-home' }"
         >
         </v-list-item>
-        <music-form />
+        <game-form />
         <v-list-item
           :prepend-icon="theme === 'light' ? 'mdi-weather-sunny' : 'mdi-weather-night'"
           title="Change theme"
@@ -31,11 +31,11 @@
 </template>
 
 <script>
-import MusicForm from "@/components/MusicForm.vue"
+import GameForm from "@/components/GameForm.vue"
 
 export default {
   components: {
-    MusicForm
+    GameForm
   },
   props: {
     title: {

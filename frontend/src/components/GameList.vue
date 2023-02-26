@@ -6,39 +6,39 @@
 
     </v-row>
     <v-row class="mt-10">
-      <v-card v-for="music in apiMusics.songs" :key="music.title" rounded class="shadow-on-hover ma-2" :class="getClass(music)" @click="musicChoosed(music)">
-        <v-img :src="music.cover" height="145" width="145" class="mx-4 mt-4"></v-img>
-        <v-card-title>{{ reduceTitle(music.title) }}</v-card-title>
-        <v-card-subtitle class="mb-6">{{ music.platform }}</v-card-subtitle>
-        <v-btn @click="deleteGame(music)">DELETE</v-btn>
+      <v-card v-for="game in apiGames.songs" :key="game.title" rounded class="shadow-on-hover ma-2" :class="getClass(game)" @click="gameChoosed(game)">
+        <v-img :src="game.cover" height="145" width="145" class="mx-4 mt-4"></v-img>
+        <v-card-title>{{ reduceTitle(game.title) }}</v-card-title>
+        <v-card-subtitle class="mb-6">{{ game.platform }}</v-card-subtitle>
+        <v-btn @click="deleteGame(game)">DELETE</v-btn>
       </v-card>
     </v-row>
 
     <!-- <v-row class="mt-12">
       <v-col class="pa-0">
-        <h5 class="text-h5 font-weight-bold mb-1">Rate your musics</h5>
+        <h5 class="text-h5 font-weight-bold mb-1">Rate your games</h5>
       </v-col>
       <v-spacer></v-spacer>
       <span class="caption grey--text mr-2">SEE ALL</span>
     </v-row>
     <v-row class="mt-12">
       <v-card
-        v-for="music in apiMusics.songs"
-        :key="music.title"
+        v-for="game in apiGames.songs"
+        :key="game.title"
         min-width="360"
         class="mr-5"
       >
         <div class="d-flex justify-between">
           <v-card-title class="flex-grow-1 flex-column align-start">
             <div class="text-h5">
-              {{ music.title }}
+              {{ game.title }}
             </div>
-            <div class="text-h6 font-weight-thin">{{ music.platform }}</div>
+            <div class="text-h6 font-weight-thin">{{ game.platform }}</div>
           </v-card-title>
           <v-img
             contain
             height="125px"
-            :src="music.cover"
+            :src="game.cover"
             style="flex-basis: 125px"
             class="flex-grow-0"
           ></v-img>
@@ -47,7 +47,7 @@
         <v-divider></v-divider>
 
         <v-card-actions class="pa-4">
-          Rate this music
+          Rate this game
           <v-spacer></v-spacer>
           <span class="text-grey text-caption me-2">
             ({{ rating }})
@@ -68,49 +68,49 @@
 </template>
 
 <script>
-import { useMusicStore } from "@/stores/musicStore"
+import { useGameStore } from "@/stores/gameStore"
 import { ref, onMounted } from 'vue'
 import songsApi from "@/api/songs.api.js"
 
 
-const apiMusics = ref([]) 
+const apiGames = ref([]) 
 
 export default {
   setup () {
-    const musicStore = useMusicStore()
+    const gameStore = useGameStore()
     const rating = ref(0)
 
-    async function getAPIMusics () {
-      apiMusics.value = await songsApi.getGames()
+    async function getAPIGames () {
+      apiGames.value = await songsApi.getGames()
     }
 
     onMounted(async () => {
-      await getAPIMusics()
+      await getAPIGames()
     })
 
-    return { musicStore, apiMusics, rating }
+    return { gameStore, apiGames, rating }
   },
   methods: {
-    async deleteGame(newMusic) {
-      await songsApi.deleteGame({id: newMusic.id})
-      apiMusics.value = await songsApi.getGames()
+    async deleteGame(newGame) {
+      await songsApi.deleteGame({id: newGame.id})
+      apiGames.value = await songsApi.getGames()
     },
-    getClass(newMusic) {
-      if (newMusic.status == 1) {
+    getClass(newGame) {
+      if (newGame.status == 1) {
         return 'red'
       }
-      if (newMusic.status == 2) {
+      if (newGame.status == 2) {
         return 'yellow'
       }
-      if (newMusic.status == 3) {
+      if (newGame.status == 3) {
         return 'green'
       }
     },
-    musicChoosed(newMusic) {
-      if (newMusic.status == 3) {
-        newMusic.status = 1
+    gameChoosed(newGame) {
+      if (newGame.status == 3) {
+        newGame.status = 1
       } else {
-        newMusic.status += 1
+        newGame.status += 1
       }
     },
     reduceTitle (title) {

@@ -1,6 +1,6 @@
 import DefaultLayout from "@/layouts/default/DefaultLayout.vue"
-import PlaylistAddView from "@/views/musics/PlaylistAddView"
-import MusicRowView from "@/views/musics/MusicRowView.vue"
+import PlaylistAddView from "@/views/games/PlaylistAddView"
+import GameRowView from "@/views/games/GameRowView.vue"
 
 export default [
   {
@@ -15,13 +15,13 @@ export default [
     ],
   },
   {
-    path: "/musics",
+    path: "/games",
     component: DefaultLayout,
     children: [
       {
         path: "playing",
-        name: "playingMusics",
-        component: MusicRowView,
+        name: "playingGames",
+        component: GameRowView,
       },
     ],
   }

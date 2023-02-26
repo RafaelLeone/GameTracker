@@ -3,7 +3,7 @@ from http import HTTPStatus
 import pytest
 from django.core.files.uploadedfile import SimpleUploadedFile
 
-from gametracker.musics.models import Game
+from gametracker.games.models import Game
 
 
 @pytest.fixture
@@ -24,14 +24,14 @@ def test_list_songs_retur_songs_listl(client, db):
         status=1
     )
 
-    resp = client.post("/api/musics/list_songs")
+    resp = client.post("/api/games/list_songs")
     assert resp.json() == {"songs": [song.to_dict_json()]}
     assert resp.status_code == HTTPStatus.OK
 
 
 def test_add_song_create_a_song(client, db):
     resp = client.post(
-        "/api/musics/add_song",
+        "/api/games/add_song",
         {
             "title": "We are the djavue",
             "platform": "Tonylampkins",
@@ -44,7 +44,7 @@ def test_add_song_create_a_song(client, db):
 
 def test_delete_song(client, db, song):
     resp = client.post(
-        "/api/musics/delete_song",
+        "/api/games/delete_song",
         {
             "id": song.id
         },

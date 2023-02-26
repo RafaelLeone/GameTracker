@@ -5,14 +5,14 @@
     <v-app :theme="theme">
       <app-nav-bar :theme="theme" @theme-click="onThemeClick"></app-nav-bar>
       <RouterView />
-      <music-player v-if="musicRow.length" class="p-5" :songs="musicRow" @close-player="clearGames"></music-player>
+      <game-player v-if="gameRow.length" class="p-5" :songs="gameRow" @close-player="clearGames"></game-player>
     </v-app>
   </VLayout>
 </template>
 
 <script setup>
 import { ref } from "vue"
-import { useMusicStore } from "@/stores/musicStore"
+import { useGameStore } from "@/stores/gameStore"
 
 const theme = ref("dark")
 
@@ -38,20 +38,20 @@ export default {
   },
   setup() {
     const appStore = useAppStore()
-    const musicStore = useMusicStore()
-    return { appStore, musicStore }
+    const gameStore = useGameStore()
+    return { appStore, gameStore }
   },
   computed: {
     ...mapState(useAppStore, ["errorMessage", "showErrorMessage"]),
     ...mapState(useAccountsStore, ["loggedUser"]),
-    ...mapState(useMusicStore, ["musicRow"]),
+    ...mapState(useGameStore, ["gameRow"]),
   },
   methods: {
     closeErrorDialog() {
       this.appStore.setShowErrorMessage(null)
     },
     clearGames () {
-      this.musicStore.clearRow()
+      this.gameStore.clearRow()
     }
   },
 }

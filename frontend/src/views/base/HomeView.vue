@@ -1,21 +1,21 @@
 <template>
   <v-container class="fill-height">
     <v-responsive class="d-flex align-center text-center fill-height">
-        <music-list/>
+        <game-list/>
     </v-responsive>
   </v-container>
 </template>
 
 <script>
-import MusicForm from "@/components/MusicForm.vue"
-import MusicList from "@/components/MusicList.vue"
+import GameForm from "@/components/GameForm.vue"
+import GameList from "@/components/GameList.vue"
 import { useAppStore } from "@/stores/appStore"
 
 export default {
   name: 'HomeView',
   components: {
-    MusicForm,
-    MusicList,
+    GameForm,
+    GameList,
   },
 }
 </script>

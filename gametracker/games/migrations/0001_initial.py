@@ -26,7 +26,7 @@ class Migration(migrations.Migration):
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('name', models.CharField(max_length=100)),
                 ('created_at', models.DateTimeField(auto_now_add=True, verbose_name='criado em')),
-                ('songs', models.ManyToManyField(to='musics.song')),
+                ('songs', models.ManyToManyField(to='games.song')),
             ],
         ),
     ]
