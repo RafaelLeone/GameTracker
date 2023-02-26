@@ -7,7 +7,7 @@
         <v-card-text>
           <v-form ref="form" v-model="valid">
             <v-text-field v-model="title" prepend-icon="mdi-format-title" label="Title" :rules="titleRules" />
-            <v-text-field v-model="platform" prepend-icon="mdi-laptop" label="Platform" :rules="platformRules" />
+            <v-text-field v-model="platform" prepend-icon="mdi-account-game" label="Platform" :rules="platformRules" />
             <v-text-field v-model="gameCover" prepend-icon="mdi-image-area" label="Cover (copy img adress w/ right mouse click)" type="url" :rules="imageRules"/>
           </v-form>
         </v-card-text>
@@ -22,7 +22,7 @@
 <script>
 import { ref } from 'vue'
 import { useAppStore } from "@/stores/appStore"
-import gamesApi from "@/api/games.api.js"
+import songsApi from "@/api/games.api.js"
 
 export default {
   setup () {
@@ -57,7 +57,7 @@ export default {
           cover: gameCover.value,
         }
 
-        await gamesApi.addNewgame(newGame)
+        await songsApi.addNewsong(newGame)
         showForm.value = false
         cleanForm()
       }

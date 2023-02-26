@@ -7,7 +7,7 @@ from gametracker.games.models import Game
 
 
 @pytest.fixture
-def song(db):
+def game(db):
     return Game.objects.create(
         title="Tonylamkins e seus teclados",
         platform="Tonylamkins",
@@ -16,22 +16,22 @@ def song(db):
     )
 
 
-def test_list_songs_retur_songs_listl(client, db):
-    song = Game.objects.create(
+def test_list_games_retur_games_listl(client, db):
+    game = Game.objects.create(
         title="Tonylamkins e seus teclados",
         platform="Tonylamkins",
         cover="url",
         status=1
     )
 
-    resp = client.post("/api/games/list_songs")
-    assert resp.json() == {"songs": [song.to_dict_json()]}
+    resp = client.post("/api/games/list_games")
+    assert resp.json() == {"games": [game.to_dict_json()]}
     assert resp.status_code == HTTPStatus.OK
 
 
-def test_add_song_create_a_song(client, db):
+def test_add_game_create_a_game(client, db):
     resp = client.post(
-        "/api/games/add_song",
+        "/api/games/add_game",
         {
             "title": "We are the djavue",
             "platform": "Tonylampkins",
@@ -42,11 +42,11 @@ def test_add_song_create_a_song(client, db):
     assert resp.status_code == HTTPStatus.OK
 
 
-def test_delete_song(client, db, song):
+def test_delete_game(client, db, game):
     resp = client.post(
-        "/api/games/delete_song",
+        "/api/games/delete_game",
         {
-            "id": song.id
+            "id": game.id
         },
     )
     assert Game.objects.all().count() == 0

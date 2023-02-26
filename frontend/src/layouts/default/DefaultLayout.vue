@@ -5,7 +5,7 @@
     <v-app :theme="theme">
       <app-nav-bar :theme="theme" @theme-click="onThemeClick"></app-nav-bar>
       <RouterView />
-      <game-player v-if="gameRow.length" class="p-5" :songs="gameRow" @close-player="clearGames"></game-player>
+      <game-player v-if="gameRow.length" class="p-5" :games="gameRow" @close-player="clearGames"></game-player>
     </v-app>
   </VLayout>
 </template>

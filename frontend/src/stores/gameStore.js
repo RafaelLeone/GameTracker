@@ -54,7 +54,7 @@ export const useGameStore = defineStore("gameStore", {
 
 
 // const hasNextGame = computed(() => {
-//   return queuePosition.value + 1 < songs.value.length
+//   return queuePosition.value + 1 < games.value.length
 // })
 // const hasPreviousGame = computed(() => {
 //   return queuePosition.value !== 0

@@ -6,7 +6,7 @@
 
     </v-row>
     <v-row class="mt-10">
-      <v-card v-for="game in apiGames.songs" :key="game.title" rounded class="shadow-on-hover ma-2" :class="getClass(game)" @click="gameChoosed(game)">
+      <v-card v-for="game in apiGames.games" :key="game.title" rounded class="shadow-on-hover ma-2" :class="getClass(game)" @click="gameChoosed(game)">
         <v-img :src="game.cover" height="145" width="145" class="mx-4 mt-4"></v-img>
         <v-card-title>{{ reduceTitle(game.title) }}</v-card-title>
         <v-card-subtitle class="mb-6">{{ game.platform }}</v-card-subtitle>
@@ -23,7 +23,7 @@
     </v-row>
     <v-row class="mt-12">
       <v-card
-        v-for="game in apiGames.songs"
+        v-for="game in apiGames.games"
         :key="game.title"
         min-width="360"
         class="mr-5"
@@ -70,7 +70,7 @@
 <script>
 import { useGameStore } from "@/stores/gameStore"
 import { ref, onMounted } from 'vue'
-import songsApi from "@/api/songs.api.js"
+import gamesApi from "@/api/games.api.js"
 
 
 const apiGames = ref([]) 
@@ -81,7 +81,7 @@ export default {
     const rating = ref(0)
 
     async function getAPIGames () {
-      apiGames.value = await songsApi.getGames()
+      apiGames.value = await gamesApi.getGames()
     }
 
     onMounted(async () => {
@@ -92,8 +92,8 @@ export default {
   },
   methods: {
     async deleteGame(newGame) {
-      await songsApi.deleteGame({id: newGame.id})
-      apiGames.value = await songsApi.getGames()
+      await gamesApi.deleteGame({id: newGame.id})
+      apiGames.value = await gamesApi.getGames()
     },
     getClass(newGame) {
       if (newGame.status == 1) {
