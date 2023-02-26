@@ -17,5 +17,5 @@ class Game(models.Model):
             "title": self.title,
             "platform": self.platform,
             "cover": self.cover,
-            "status": 1
+            "status": self.status
         }

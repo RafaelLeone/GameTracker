@@ -24,3 +24,11 @@ def delete_game(request):
     id = request.POST["id"]
     game_svc.delete_game(id)
     return JsonResponse({})
+
+
+@csrf_exempt
+def change_status(request):
+    id = request.POST["id"]
+    new_status = request.POST["new_status"]
+    game_svc.change_status(id, new_status)
+    return JsonResponse({})

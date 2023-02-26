@@ -1,7 +1,6 @@
 from http import HTTPStatus
 
 import pytest
-from django.core.files.uploadedfile import SimpleUploadedFile
 
 from gametracker.games.models import Game
 
@@ -50,4 +49,18 @@ def test_delete_game(client, db, game):
         },
     )
     assert Game.objects.all().count() == 0
+    assert resp.status_code == HTTPStatus.OK
+
+
+def test_change_status(client, db, game):
+    new_status = game.status + 1
+    resp = client.post(
+        "/api/games/change_status",
+        {
+            "id": game.id,
+            "new_status": new_status
+        },
+    )
+    game.refresh_from_db()
+    assert game.status == new_status
     assert resp.status_code == HTTPStatus.OK

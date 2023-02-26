@@ -38,5 +38,17 @@ export default {
           })
       })
     },
+    changeStatus: (data) => {
+      return new Promise((resolve, reject) => {
+        api
+          .post("/api/games/change_status", apiHelpers.dataToForm(data))
+          .then((response) => {
+            return resolve(response.data)
+          })
+          .catch((error) => {
+            return reject(error)
+          })
+      })
+    },
   }
   

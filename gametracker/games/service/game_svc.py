@@ -21,3 +21,8 @@ def list_games():
 def delete_game(id: int):
     Game.objects.get(id=id).delete()
 
+
+def change_status(id: int, status: int):
+    Game.objects.filter(id=id).update(status=status)
+
+
