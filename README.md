@@ -48,5 +48,5 @@ Para rodar a aplicação conectada ao backend, basta setar o valor dessa variáv
 
 ## Créditos
 
-[d-jávue](https://github.com/huogerac/djavue)  
+[djavue](https://github.com/huogerac/djavue)  
 [spotbye](https://github.com/vitoiuo/spotbye-audio-player/blob/main/frontend/src/components/GameList.vue)
