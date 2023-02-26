@@ -5,7 +5,7 @@ Adicione jogos, e mude se está em backlog, jogando ou completo.
 Ao poder adicionar como quiser, você pode até ter o mesmo jogo 2 vezes, mas com dificuldades diferentes, por exemplo.
 
 ## **Vídeo de apresentação**
-[*Link para o drive*]()  
+[*Link para o vídeo*](https://www.loom.com/share/e00696fb397f4deb8d03809d14fe808c)  
 
 ![Live demo](./readme_assets/demo.gif)  
 
