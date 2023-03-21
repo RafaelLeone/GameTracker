@@ -20,7 +20,7 @@
   </div>
 </template>
 <script>
-import { ref } from 'vue'
+import { ref } from 'vue';
 import { useAppStore } from "@/stores/appStore"
 import gamesApi from "@/api/games.api.js"
 
@@ -49,22 +49,6 @@ export default {
     function showPopup () {
         showForm.value = true
     }
-    async function submit () {
-      if (valid.value) {
-        const newGame = {
-          title: title.value,
-          platform: platform.value,
-          cover: gameCover.value,
-        }
-
-        await gamesApi.addNewgame(newGame)
-        showForm.value = false
-        cleanForm()
-      }
-      else {
-        form.value.validate()
-      }
-    }
     function cleanForm () {
         form.value.reset()
     }
@@ -80,9 +64,31 @@ export default {
       titleRules,
       platformRules,
       imageRules,
-      showPopup,
-      submit,
-      cleanForm,
+    }
+  }, 
+  methods: {
+    async submit () {
+    if (this.valid) {
+      const newGame = {
+        title: this.title,
+        platform: this.platform,
+        cover: this.gameCover,
+      }
+
+      await gamesApi.addNewgame(newGame)
+      this.showForm = false
+      this.$emit('jogoAdicionado')
+      this.cleanForm()
+    }
+    else {
+      this.form.validate()
+    }
+  },
+    showPopup () {
+        this.showForm = true
+    },
+    cleanForm () {
+        this.form.reset()
     }
   }
 }

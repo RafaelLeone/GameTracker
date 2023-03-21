@@ -1,7 +1,7 @@
 <template>
   <v-container class="fill-height">
     <v-responsive class="d-flex align-center text-center fill-height">
-        <game-list/>
+        <game-list @jogoAdicionado="onJogoAdicionado"/>
     </v-responsive>
   </v-container>
 </template>
@@ -17,5 +17,16 @@ export default {
     GameForm,
     GameList,
   },
+  data () {
+    return{
+      novoJogo: ''
+    }
+  },
+  methods: {
+    onJogoAdicionado (newGame) {
+      this.novoJogo = newGame
+      console.log("Recebi o evento")
+    }
+  }
 }
 </script>
