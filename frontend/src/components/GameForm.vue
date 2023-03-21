@@ -64,6 +64,8 @@ export default {
       titleRules,
       platformRules,
       imageRules,
+      showPopup,
+      cleanForm,
     }
   }, 
   methods: {
@@ -77,8 +79,8 @@ export default {
 
       await gamesApi.addNewgame(newGame)
       this.showForm = false
-      this.$emit('jogoAdicionado')
       this.cleanForm()
+      this.$router.go()
     }
     else {
       this.form.validate()
@@ -89,7 +91,7 @@ export default {
     },
     cleanForm () {
         this.form.reset()
-    }
+  }
   }
 }
 </script>
