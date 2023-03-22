@@ -50,5 +50,8 @@ export default {
           })
       })
     },
+    timer: (data) => {
+      return {"total": 300, "disponibilidade": 2, "realizados": 200, "restante": 200}
+    },
   }
   
