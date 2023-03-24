@@ -10,10 +10,30 @@
         </template>
     
         <v-card-text class="cardtext">
-          <p>Total de horas em Games: {{ total }} </p>
-          <p>Horas jogadas: {{ realizados }}</p>
-          <p>Disponibilidade por semana: {{ disponibilidade }} </p>
-          <p>Horas a cumprir por semana: {{ restante }} </p>
+            <v-row>
+                <v-col>
+                    Total de horas em Games
+                </v-col>
+                <v-col>
+                    {{ total }} 
+                </v-col>
+            </v-row>
+            <v-row>
+                <v-col>
+                    Horas jogadas
+                </v-col>
+                <v-col>
+                    {{ realizados }}
+                </v-col>
+            </v-row>
+            <v-row>
+                <v-col>
+                    Horas faltantes
+                </v-col>
+                <v-col>
+                    {{ restante }}
+                </v-col>
+            </v-row>
         </v-card-text>
       </v-card>
     </div>
@@ -29,6 +49,7 @@ export default {
             total: '',
             restante: '',
             disponibilidade: '',
+            realizados: ''
 
         }
     },
@@ -38,7 +59,6 @@ export default {
             this.total = timer.total
             this.realizados = timer.realizados
             this.restante = (timer.total - timer.realizados)
-            this.disponibilidade = timer.disponibilidade
         }
     },
     mounted() {
@@ -58,6 +78,14 @@ export default {
 
 .v-card-item{
     grid-template-columns: none;
+}
+
+.v-row{
+    text-align: -webkit-center
+}
+
+.v-col{
+    padding: 2%
 }
 
 </style>
