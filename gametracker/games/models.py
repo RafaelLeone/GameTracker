@@ -10,6 +10,7 @@ class Game(models.Model):
         Playing = 2
         Done = 3
     status = models.IntegerField(choices=Status.choices)
+    timer = models.PositiveSmallIntegerField()
 
     def to_dict_json(self):
         return {
@@ -17,5 +18,6 @@ class Game(models.Model):
             "title": self.title,
             "platform": self.platform,
             "cover": self.cover,
-            "status": self.status
+            "status": self.status,
+            "timer": self.timer
         }

@@ -18,6 +18,7 @@
         <v-img :src="game.cover" height="145" width="145" class="mx-4 mt-4"></v-img>
         <v-card-title>{{ game.title }}</v-card-title>
         <v-card-subtitle class="mb-6 fs">{{ game.platform }}</v-card-subtitle>
+        <v-card-subtitle class="mb-6 fs">{{ game.timer }} hours</v-card-subtitle>
         <v-btn @click="deleteGame(game)">DELETE</v-btn>
       </v-card>
     </v-row>

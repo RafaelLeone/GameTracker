@@ -6,6 +6,7 @@ def add_game(new_game):
         title=new_game["title"],
         platform=new_game["platform"],
         cover=new_game["cover"],
+        timer=new_game["timer"],
         status=1
     )
     game.save()
