@@ -55,6 +55,7 @@ export default {
     async deleteGame(newGame) {
       await gamesApi.deleteGame({id: newGame.id})
       apiGames.value = await gamesApi.getGames()
+      this.$emit('mudouStatus')
     },
     getClass(newGame) {
       if (newGame.status == 1) {

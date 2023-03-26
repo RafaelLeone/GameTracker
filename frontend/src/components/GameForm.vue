@@ -8,7 +8,7 @@
           <v-form ref="form" v-model="valid">
             <v-text-field v-model="title" prepend-icon="mdi-format-title" label="Title" :rules="titleRules" />
             <v-text-field v-model="platform" prepend-icon="mdi-laptop" label="Platform" :rules="platformRules" />
-            <v-text-field v-model="timer" prepend-icon="mdi-timer" label="Game Hours" :rules="platformRules" />
+            <v-text-field v-model="timer" prepend-icon="mdi-timer" label="Game Hours" :rules="platformRules" type="number" min="0" />
             <v-text-field v-model="gameCover" prepend-icon="mdi-image-area" label="Cover (copy img adress w/ right mouse click)" type="url" :rules="imageRules"/>
           </v-form>
         </v-card-text>
