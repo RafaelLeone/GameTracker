@@ -32,6 +32,7 @@ def get_total_hours():
     totalHours = Game.objects.aggregate(Sum('timer'))['timer__sum']
     hoursPlayed = Game.objects.filter(status=3).aggregate(total=Sum('timer'))['total']
     hoursPlayed = 0 if hoursPlayed is None else hoursPlayed
+    totalHours = 0 if totalHours is None else totalHours
     timer = {"totalHours": totalHours, "hoursPlayed": hoursPlayed}
     return timer
 
