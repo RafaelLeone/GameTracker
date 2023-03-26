@@ -73,7 +73,9 @@ export default {
       } else {
         newGame.status += 1
       }
+      this.$emit('mudouStatus')
       await gamesApi.changeStatus({id: newGame.id, new_status: newGame.status})
+      
     }
   }
 }

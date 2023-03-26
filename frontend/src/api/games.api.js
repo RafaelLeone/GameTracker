@@ -50,8 +50,17 @@ export default {
           })
       })
     },
-    timer: (data) => {
-      return {"total": 300, "realizados": 200, "restante": 200}
+    timer: () => {
+            return new Promise((resolve, reject) => {
+        api
+          .get("/api/games/timer")
+          .then((response) => {
+            return resolve(response.data)
+          })
+          .catch((error) => {
+            return reject(error)
+          })
+      })
     },
   }
   

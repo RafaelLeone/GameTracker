@@ -1,3 +1,5 @@
+from django.db.models import Sum
+
 from ..models import Game
 
 
@@ -25,5 +27,12 @@ def delete_game(id: int):
 
 def change_status(id: int, status: int):
     Game.objects.filter(id=id).update(status=status)
+
+def get_total_hours():
+    totalHours = Game.objects.aggregate(Sum('timer'))['timer__sum']
+    hoursPlayed = Game.objects.filter(status=3).aggregate(total=Sum('timer'))['total']
+    hoursPlayed = 0 if hoursPlayed is None else hoursPlayed
+    timer = {"totalHours": totalHours, "hoursPlayed": hoursPlayed}
+    return timer
 
 

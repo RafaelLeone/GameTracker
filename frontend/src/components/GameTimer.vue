@@ -23,7 +23,7 @@
                     Horas jogadas
                 </v-col>
                 <v-col>
-                    {{ realizados }}
+                    {{ horasJogadas }}
                 </v-col>
             </v-row>
             <v-row>
@@ -44,27 +44,38 @@
 import gamesApi from "@/api/games.api.js"
 
 export default {
+    props: {
+        umJogoFoiAtualizado :{
+            type: Number
+        }
+    },
     data () {
         return {
             total: '',
             restante: '',
-            disponibilidade: '',
-            realizados: ''
-
+            horasJogadas: ''
         }
     },
     methods: {
         calculoDeTimer(timer){
+            this.total = timer.totalHours
+            this.horasJogadas = timer.hoursPlayed
+            this.restante = (timer.totalHours - timer.hoursPlayed)
             console.log(timer)
-            this.total = timer.total
-            this.realizados = timer.realizados
-            this.restante = (timer.total - timer.realizados)
-        }
-    },
-    mounted() {
-            const timer = gamesApi.timer()
+        },
+        async inicializaDados(){
+            const timer = await gamesApi.timer()
             this.calculoDeTimer(timer)
         }
+    },
+    async mounted() {
+            await this.inicializaDados()
+        },
+    watch: {
+        umJogoFoiAtualizado(){
+         this.inicializaDados()   
+        }
+    }
 }
 </script>
 

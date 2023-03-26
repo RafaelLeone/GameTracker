@@ -1,8 +1,8 @@
 <template>
   <v-container class="fill-height">
-    <game-timer class="d-flex justify-end"/>
+    <game-timer :umJogoFoiAtualizado="umJogoFoiAtualizado" class="d-flex justify-end"/>
     <v-responsive class="d-flex align-center text-center fill-height">
-        <game-list/>
+        <game-list @mudouStatus="actualizeTimer" />
     </v-responsive>
   </v-container>
 </template>
@@ -17,6 +17,16 @@ export default {
   components: {
     GameList,
     GameTimer
+  },
+  data (){
+    return{
+      umJogoFoiAtualizado: 0
+    }
+  },
+  methods: {
+    actualizeTimer(){
+      this.umJogoFoiAtualizado++
+    }
   }
 }
 </script>

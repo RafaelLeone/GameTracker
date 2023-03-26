@@ -32,3 +32,8 @@ def change_status(request):
     new_status = request.POST["new_status"]
     game_svc.change_status(id, new_status)
     return JsonResponse({})
+
+
+def timer(request):
+    timer = game_svc.get_total_hours()
+    return JsonResponse(timer)
