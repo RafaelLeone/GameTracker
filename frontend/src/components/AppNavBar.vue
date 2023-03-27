@@ -50,13 +50,10 @@ export default {
     },
   },
   emits: ["themeClick"],
-  data: () => {
-    return {}
-  },
   methods: {
     themeClick() {
       this.$emit("themeClick")
     },
-  },
+  }
 }
 </script>

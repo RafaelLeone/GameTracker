@@ -8,6 +8,7 @@
           <v-form ref="form" v-model="valid">
             <v-text-field v-model="title" prepend-icon="mdi-format-title" label="Title" :rules="titleRules" />
             <v-text-field v-model="platform" prepend-icon="mdi-laptop" label="Platform" :rules="platformRules" />
+            <v-text-field v-model="timer" prepend-icon="mdi-timer" label="Game Hours" :rules="platformRules" type="number" min="0" />
             <v-text-field v-model="gameCover" prepend-icon="mdi-image-area" label="Cover (copy img adress w/ right mouse click)" type="url" :rules="imageRules"/>
           </v-form>
         </v-card-text>
@@ -20,7 +21,7 @@
   </div>
 </template>
 <script>
-import { ref } from 'vue'
+import { ref } from 'vue';
 import { useAppStore } from "@/stores/appStore"
 import gamesApi from "@/api/games.api.js"
 
@@ -32,6 +33,7 @@ export default {
     const title = ref('')
     const platform = ref('')
     const gameCover = ref('')
+    const timer = ref('')
     const appStore = useAppStore()
 
     const titleRules = [
@@ -49,22 +51,6 @@ export default {
     function showPopup () {
         showForm.value = true
     }
-    async function submit () {
-      if (valid.value) {
-        const newGame = {
-          title: title.value,
-          platform: platform.value,
-          cover: gameCover.value,
-        }
-
-        await gamesApi.addNewgame(newGame)
-        showForm.value = false
-        cleanForm()
-      }
-      else {
-        form.value.validate()
-      }
-    }
     function cleanForm () {
         form.value.reset()
     }
@@ -81,9 +67,35 @@ export default {
       platformRules,
       imageRules,
       showPopup,
-      submit,
       cleanForm,
+      timer
     }
+  }, 
+  methods: {
+    async submit () {
+    if (this.valid) {
+      const newGame = {
+        title: this.title,
+        platform: this.platform,
+        cover: this.gameCover,
+        timer: this.timer,
+      }
+
+      await gamesApi.addNewgame(newGame)
+      this.showForm = false
+      this.cleanForm()
+      this.$router.go()
+    }
+    else {
+      this.form.validate()
+    }
+  },
+    showPopup () {
+        this.showForm = true
+    },
+    cleanForm () {
+        this.form.reset()
+  }
   }
 }
 </script>
