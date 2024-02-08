@@ -14,7 +14,7 @@ Ao poder adicionar como quiser, você pode até ter o mesmo jogo 2 vezes, mas co
 ## **Como rodar o projeto**
 
 ```bash
-docker-compose up --build
+docker compose up --build
 ```
 
 Se deu tudo certo, acesse localhost em seu navegador. Se não:  
