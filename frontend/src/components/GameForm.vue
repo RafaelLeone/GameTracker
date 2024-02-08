@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-list-item prepend-icon="mdi-nintendo-game-boy" color="green" title="Add game" @click="showPopup" ></v-list-item>
+    <v-list-item prepend-icon="mdi-nintendo-game-boy" color="green" title="Add game" @click="showPopup"></v-list-item>
     <v-dialog v-model="showForm" max-width="500px" @click:outside="cleanForm">
       <v-card class="pa-5">
         <v-card-title class="headline">Add Game</v-card-title>
@@ -8,7 +8,8 @@
           <v-form ref="form" v-model="valid">
             <v-text-field v-model="title" prepend-icon="mdi-format-title" label="Title" :rules="titleRules" />
             <v-text-field v-model="platform" prepend-icon="mdi-laptop" label="Platform" :rules="platformRules" />
-            <v-text-field v-model="gameCover" prepend-icon="mdi-image-area" label="Cover (copy img adress w/ right mouse click)" type="url" :rules="imageRules"/>
+            <v-text-field v-model="gameCover" prepend-icon="mdi-image-area"
+              label="Cover (copy img adress w/ right mouse click)" type="url" :rules="imageRules" />
           </v-form>
         </v-card-text>
         <v-card-actions>
@@ -23,9 +24,11 @@
 import { ref } from 'vue'
 import { useAppStore } from "@/stores/appStore"
 import gamesApi from "@/api/games.api.js"
+import eventBus from '@/api/eventBus.js';
+
 
 export default {
-  setup () {
+  setup() {
     const form = ref(null)
     const showForm = ref(false)
     const valid = ref(false)
@@ -46,10 +49,10 @@ export default {
       v => !!v || 'Game cover is required',
     ]
 
-    function showPopup () {
-        showForm.value = true
+    function showPopup() {
+      showForm.value = true
     }
-    async function submit () {
+    async function submit() {
       if (valid.value) {
         const newGame = {
           title: title.value,
@@ -60,13 +63,15 @@ export default {
         await gamesApi.addNewgame(newGame)
         showForm.value = false
         cleanForm()
+
+        eventBus.emit('gameAdded');
       }
       else {
         form.value.validate()
       }
     }
-    function cleanForm () {
-        form.value.reset()
+    function cleanForm() {
+      form.value.reset()
     }
 
     return {

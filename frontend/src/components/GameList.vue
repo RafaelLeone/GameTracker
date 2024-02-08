@@ -1,20 +1,21 @@
 <template>
-   <div>
-      <h5 class="text-h5 text-left font-weight-bold ml-5">Your games</h5>
-      <div class="label">
-        <div class="bg-red text-right mgn rounded">
-          <span>I want to play</span>
-        </div>
-        <div class="bg-yellow text-right mgn rounded">
-          <span>I'm playing</span>
-        </div>
-        <div class="bg-green text-right mgn rounded">
-          <span>Schmoved it :)</span>
-        </div>
+  <div>
+    <h5 class="text-h5 text-left font-weight-bold ml-5">Your games</h5>
+    <div class="label">
+      <div class="bg-red text-right mgn rounded">
+        <span>I want to play</span>
       </div>
-      <v-spacer></v-spacer>
+      <div class="bg-yellow text-right mgn rounded">
+        <span>I'm playing</span>
+      </div>
+      <div class="bg-green text-right mgn rounded">
+        <span>Schmoved it :)</span>
+      </div>
+    </div>
+    <v-spacer></v-spacer>
     <v-row class="mt-10 mgn">
-      <v-card v-for="game in apiGames.games" :key="game.title" rounded class="shadow-on-hover ma-2" :class="getClass(game)" @click="selectedGame(game)">
+      <v-card v-for="game in apiGames.games" :key="game.title" rounded class="shadow-on-hover ma-2"
+        :class="getClass(game)" @click="selectedGame(game)">
         <v-img :src="game.cover" height="145" width="145" class="mx-4 mt-4"></v-img>
         <v-card-title>{{ game.title }}</v-card-title>
         <v-card-subtitle class="mb-6 fs">{{ game.platform }}</v-card-subtitle>
@@ -31,16 +32,17 @@
 import { useGameStore } from "@/stores/gameStore"
 import { ref, onMounted } from 'vue'
 import gamesApi from "@/api/games.api.js"
+import eventBus from '@/api/eventBus.js';
 
 
-const apiGames = ref([]) 
+const apiGames = ref([])
 
 export default {
-  setup () {
+  setup() {
     const gameStore = useGameStore()
     const rating = ref(0)
 
-    async function getAPIGames () {
+    async function getAPIGames() {
       apiGames.value = await gamesApi.getGames()
     }
 
@@ -48,11 +50,16 @@ export default {
       await getAPIGames()
     })
 
+    eventBus.on('gameAdded', async () => {
+      // Update the game list or perform any other necessary action
+      await getAPIGames();
+    })
+
     return { gameStore, apiGames, rating }
   },
   methods: {
     async deleteGame(newGame) {
-      await gamesApi.deleteGame({id: newGame.id})
+      await gamesApi.deleteGame({ id: newGame.id })
       apiGames.value = await gamesApi.getGames()
     },
     getClass(newGame) {
@@ -72,7 +79,7 @@ export default {
       } else {
         newGame.status += 1
       }
-      await gamesApi.changeStatus({id: newGame.id, new_status: newGame.status})
+      await gamesApi.changeStatus({ id: newGame.id, new_status: newGame.status })
     }
   }
 }
@@ -84,28 +91,34 @@ export default {
   box-shadow: 0 10px 15px -3px purple,
     0 4px 6px -2px darkpurple;
 }
+
 .red {
   background-color: red;
   box-shadow: 0 10px 15px -3px red,
     0 4px 6px -2px darkred;
 }
+
 .yellow {
   box-shadow: 0 10px 15px -3px yellow,
     0 4px 6px -2px yellow;
 }
+
 .green {
   background-color: green;
   box-shadow: 0 10px 15px -3px green,
     0 4px 6px -2px darkgreen;
 }
+
 .label {
   display: flex;
 }
+
 .mgn {
   margin-left: 2%;
   margin-top: 2%;
   padding: 1%;
 }
+
 .fs {
   font-size: 110%;
 }

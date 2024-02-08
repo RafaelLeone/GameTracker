@@ -9,6 +9,7 @@
     "format": "prettier .  --write"
   },
   "dependencies": {
+    "mitt": "^2.1.0",
     "@mdi/font": "7.0.96",
     "axios": "^1.2.1",
     "pinia": "^2.0.28",
